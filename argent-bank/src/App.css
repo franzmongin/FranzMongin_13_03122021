@@ -8,6 +8,9 @@ html {
 
 body {
   margin: 0;
+}
+.page {
+  margin: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -174,7 +177,7 @@ body {
 }
 
 .sign-in-icon {
-  font-size: 5rem;
+  /* font-size: 5rem; */
 }
 
 .input-remember {

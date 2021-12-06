@@ -4,7 +4,7 @@ import NavBar from "../../components/NavBar/NavBar";
 
 function SignIn() {
   return (
-    <div className="signin-page">
+    <div className="signin-page page">
       <NavBar />
       <main className="main bg-dark">
         <section className="sign-in-content">

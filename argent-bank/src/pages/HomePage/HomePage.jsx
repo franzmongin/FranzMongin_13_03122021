@@ -9,7 +9,7 @@ import securityIcon from "./icon-security.png";
 
 function HomePage() {
   return (
-    <div className="homepage">
+    <div className="homepage page">
       <NavBar />
       <main>
         <div className="hero" style={{ backgroundImage: `url(${background})` }}>
