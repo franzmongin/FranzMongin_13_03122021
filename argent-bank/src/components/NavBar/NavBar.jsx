@@ -16,7 +16,7 @@ function NavBar() {
       <div>
         <Link to="/" className="main-nav-item">
           <i className="fa fa-user-circle"></i>
-          Sign In
+          <span>&nbsp;Sign In</span>
         </Link>
       </div>
     </nav>
