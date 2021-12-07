@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import NavBar from "../../components/NavBar/NavBar";
 
@@ -24,9 +25,9 @@ function SignIn() {
               <label for="remember-me">Remember me</label>
             </div>
             {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
-            <a href="./user.html" className="sign-in-button">
+            <Link to="/user" className="sign-in-button">
               Sign In
-            </a>
+            </Link>
             {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
             {/* <!-- <button className="sign-in-button">Sign In</button> --> */}
             {/* <!--  --> */}
