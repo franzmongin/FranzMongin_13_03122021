@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router";
+import { connect, useDispatch, useSelector, useStore } from "react-redux";
 import Footer from "../../components/Footer/Footer";
 import NavBar from "../../components/NavBar/NavBar";
+import { chargeProfile } from "../../features/user/chargeProfile";
 
 function UserPage() {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      navigate("/");
+    } else {
+      console.log("coucou");
+      dispatch(chargeProfile(token));
+    }
+  }, []);
   return (
     <div className="user-page page">
       <NavBar />
