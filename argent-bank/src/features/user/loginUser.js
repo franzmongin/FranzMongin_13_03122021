@@ -14,11 +14,8 @@ export function loginUser(usernameInput, passwordInput) {
         }),
       });
       const formattedResponse = await response.json();
-      console.log(formattedResponse);
       if (formattedResponse.status === 200) {
-        console.log(formattedResponse.body.token);
         dispatch(connection(formattedResponse.body.token));
-        console.log(getState().user.connected);
         localStorage.setItem("token", formattedResponse.body.token);
       } else {
         throw new Error(formattedResponse.message);

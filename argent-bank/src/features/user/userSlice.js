@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: { connected: false, token: null, userInfos: {} },
+  initialState: {
+    connected: false,
+    token: null,
+    userInfos: {},
+    requestStatus: "",
+  },
   reducers: {
     connection: (state, action) => {
       state.connected = true;
@@ -15,7 +20,15 @@ const userSlice = createSlice({
     chargeUserInfos: (state, action) => {
       state.userInfos = action.payload;
     },
+    changeRequestStatus: (state, action) => {
+      state.requestStatus = action.payload;
+    },
   },
 });
 export default userSlice.reducer;
-export const { connection, disconnection, chargeUserInfos } = userSlice.actions;
+export const {
+  connection,
+  disconnection,
+  chargeUserInfos,
+  changeRequestStatus,
+} = userSlice.actions;

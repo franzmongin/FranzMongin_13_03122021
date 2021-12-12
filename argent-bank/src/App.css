@@ -16,6 +16,10 @@ body {
   min-height: 100vh;
 }
 
+.user-page .name {
+  text-transform: capitalize;
+}
+
 .main {
   flex: 1;
 }

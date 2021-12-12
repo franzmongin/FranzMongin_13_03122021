@@ -1,8 +1,18 @@
-import { chargeUserInfos } from "./userSlice";
+import {
+  changeRequestStatus,
+  chargeUserInfos,
+  disconnection,
+} from "./userSlice";
+
+/**
+ * Thunk to make user profile GET request and store the result in redux store
+ * @param {*} token
+ * @returns
+ */
 export function chargeProfile(token) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
-      console.log(`Bearer ${token}`);
+      dispatch(changeRequestStatus("begin"));
       let response = await fetch("http://localhost:3001/api/v1/user/profile", {
         headers: {
           Accept: "application/json",
@@ -10,12 +20,15 @@ export function chargeProfile(token) {
         },
         method: "POST",
       });
-      console.log(response);
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
       const formattedResponse = await response.json();
-      //   console.log(formattedResponse);
-      console.log(formattedResponse.body);
       if (formattedResponse.status === 200) {
         dispatch(chargeUserInfos(formattedResponse.body));
+        dispatch(changeRequestStatus("end"));
+      } else {
+        dispatch(disconnection());
       }
     } catch (error) {
       console.log(error);
