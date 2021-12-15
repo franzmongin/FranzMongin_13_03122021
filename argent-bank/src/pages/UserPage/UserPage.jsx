@@ -4,23 +4,25 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/Footer/Footer";
 import NavBar from "../../components/NavBar/NavBar";
 import { chargeProfile } from "../../features/user/chargeProfile";
+import { editName } from "../../features/user/editName";
 
 function UserPage() {
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
+  let token = localStorage.getItem("token");
   let navigate = useNavigate();
   let isConnected = useSelector((state) => state.user.connected);
   let requestStatus = useSelector((state) => state.user.requestStatus);
   const { firstName, lastName } = useSelector((state) => state.user.userInfos);
   const [firstNameInput, setfirstNameInput] = useState(firstName);
   const [lastNameInput, setlastNameInput] = useState(lastName);
-  const [editName, seteditName] = useState(false);
+  const [editNameStatus, seteditNameStatus] = useState(false);
   const handleOpenEdit = () => {
-    seteditName(!editName);
+    seteditNameStatus(!editNameStatus);
   };
 
-  const handleSubmitEditName = (token) => {
-      
+  const handleSubmitEditName = () => {
+    dispatch(editName(token, firstNameInput, lastNameInput));
+    seteditNameStatus(false);
   };
 
   useEffect(() => {
@@ -30,53 +32,62 @@ function UserPage() {
     dispatch(chargeProfile(token));
   }, [dispatch, isConnected, navigate, token]);
   return (
-    <div className="user-page page">
-      <NavBar />
+    <div
+      className={
+        editNameStatus ? `user-page page editing-name` : `user-page page`
+      }
+    >
+      <NavBar isConnected={isConnected} />
       {requestStatus === "end" && (
         <main className="main bg-dark">
           <div className="header">
             <h1>
               Welcome back
               <br />
-              {!editName ? (
-                <span className="name">{`${firstName} ${lastName}`}</span>
-              ) : (
+              {!editNameStatus ? (
                 <>
-                  <input
-                    type="text"
-                    name="first-name-input"
-                    placeholder={firstName}
-                    onChange={(e) => setfirstNameInput(e.target.value)}
-                  />
-                  <input
-                    type="text"
-                    name="last-name-input"
-                    placeholder={lastName}
-                    onChange={(e) => setlastNameInput(e.target.value)}
-                  />
+                  <span className="name">{`${firstName} ${lastName}`}</span>
+                  <br />
+                  <button
+                    className="edit-button"
+                    onClick={() => handleOpenEdit()}
+                  >
+                    Edit Name
+                  </button>
                 </>
+              ) : (
+                <div className="edit-name-form">
+                  <div className="edit-name-form-inputs">
+                    <input
+                      type="text"
+                      name="first-name-input"
+                      placeholder={firstName}
+                      onChange={(e) => setfirstNameInput(e.target.value)}
+                    />
+                    <input
+                      type="text"
+                      name="last-name-input"
+                      placeholder={lastName}
+                      onChange={(e) => setlastNameInput(e.target.value)}
+                    />
+                  </div>
+                  <div className="edit-name-form-buttons">
+                    <button
+                      className="save-name-button"
+                      onClick={() => handleSubmitEditName()}
+                    >
+                      Save
+                    </button>
+                    <button
+                      className="cancel-edit-button"
+                      onClick={() => seteditNameStatus(false)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
               )}
             </h1>
-            {!editName ? (
-              <button className="edit-button" onClick={() => handleOpenEdit()}>
-                Edit Name
-              </button>
-            ) : (
-              <>
-                <button
-                  className="save-name-button"
-                  onClick={() => handleSubmitEditName()}
-                >
-                  Save
-                </button>
-                <button
-                  className="cancel-edit-button"
-                  onClick={() => seteditName(false)}
-                >
-                  Cancel
-                </button>
-              </>
-            )}
           </div>
           <h2 className="sr-only">Accounts</h2>
           <section className="account">

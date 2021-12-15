@@ -15,7 +15,7 @@ export function loginUser(usernameInput, passwordInput) {
       });
       const formattedResponse = await response.json();
       if (formattedResponse.status === 200) {
-        dispatch(connection(formattedResponse.body.token));
+        dispatch(connection());
         localStorage.setItem("token", formattedResponse.body.token);
       } else {
         throw new Error(formattedResponse.message);

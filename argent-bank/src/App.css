@@ -19,7 +19,57 @@ body {
 .user-page .name {
   text-transform: capitalize;
 }
+.user-page .save-name-button,
+.user-page .cancel-edit-button {
+  border-color: #6458f5;
+  border: 1px solid #6458f5;
+  border-radius: 5px;
+  padding: 10px 30px;
+  color: #6458f5;
+  background-color: white;
+  font-weight: bold;
+  width: 105px;
+}
+.user-page input[name="first-name-input"],
+.user-page input[name="last-name-input"] {
+  padding: 20px 10px;
+  height: 35px;
+  font-size: 16px;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.user-page .edit-name-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  margin-top: 20px;
+}
+.edit-name-form-inputs,
+.edit-name-form-buttons {
+  display: flex;
+  justify-content: center;
 
+  flex-basis: 100%;
+  column-gap: 15px;
+}
+/* editing name theme for user page */
+.editing-name .main {
+  background-color: #e0e6ed;
+}
+.editing-name h1 {
+  color: black;
+}
+.editing-name .transaction-button {
+  background-color: #6458f5;
+  border: 0;
+}
+.editing-name .account {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 .main {
   flex: 1;
 }
@@ -76,7 +126,9 @@ body {
   max-width: 100%;
   width: 200px;
 }
-
+.main-nav-item {
+  text-transform: capitalize;
+}
 .hero {
   background-position: 0 -50px;
   background-size: cover;

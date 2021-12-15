@@ -4,14 +4,12 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     connected: false,
-    token: null,
     userInfos: {},
     requestStatus: "",
   },
   reducers: {
     connection: (state, action) => {
       state.connected = true;
-      state.token = action.payload;
     },
     disconnection: (state) => {
       state.connected = false;
@@ -23,6 +21,9 @@ const userSlice = createSlice({
     changeRequestStatus: (state, action) => {
       state.requestStatus = action.payload;
     },
+    logOut: (state) => {
+      state.connected = false;
+    },
   },
 });
 export default userSlice.reducer;
@@ -31,4 +32,5 @@ export const {
   disconnection,
   chargeUserInfos,
   changeRequestStatus,
+  logOut,
 } = userSlice.actions;
