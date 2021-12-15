@@ -6,10 +6,12 @@ const userSlice = createSlice({
     connected: false,
     userInfos: {},
     requestStatus: "",
+    errorConnection: null,
   },
   reducers: {
     connection: (state, action) => {
       state.connected = true;
+      state.errorConnection = null;
     },
     disconnection: (state) => {
       state.connected = false;
@@ -24,6 +26,9 @@ const userSlice = createSlice({
     logOut: (state) => {
       state.connected = false;
     },
+    errorConnection: (state, action) => {
+      state.errorConnection = action.payload;
+    },
   },
 });
 export default userSlice.reducer;
@@ -33,4 +38,5 @@ export const {
   chargeUserInfos,
   changeRequestStatus,
   logOut,
+  errorConnection,
 } = userSlice.actions;

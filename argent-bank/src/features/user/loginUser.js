@@ -1,4 +1,4 @@
-import { connection } from "./userSlice";
+import { connection, errorConnection } from "./userSlice";
 export function loginUser(usernameInput, passwordInput) {
   return async (dispatch, getState) => {
     try {
@@ -18,6 +18,7 @@ export function loginUser(usernameInput, passwordInput) {
         dispatch(connection());
         localStorage.setItem("token", formattedResponse.body.token);
       } else {
+        dispatch(errorConnection(formattedResponse.message.toString()));
         throw new Error(formattedResponse.message);
       }
     } catch (error) {

@@ -9,6 +9,7 @@ function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const connected = useSelector((state) => state.user.connected);
+  const errorConnection = useSelector((state) => state.user.errorConnection);
   const [usernameInput, setusernameInput] = useState("");
   const [passwordInput, setpasswordInput] = useState("");
   function handleSubmitForm(e) {
@@ -48,6 +49,9 @@ function SignIn() {
               <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember me</label>
             </div>
+            {errorConnection && (
+              <div className="error-connection">{errorConnection}</div>
+            )}
             <button className="sign-in-button">Sign In</button>
           </form>
         </section>

@@ -235,6 +235,12 @@ body {
 .sign-in-icon {
   /* font-size: 5rem; */
 }
+.error-connection {
+  color: red;
+  display: flex;
+  margin-top: 10px;
+  font-weight: bold;
+}
 
 .input-remember {
   display: flex;
