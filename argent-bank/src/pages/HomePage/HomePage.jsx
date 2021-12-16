@@ -13,17 +13,7 @@ import moneyIcon from "./icon-money.png";
 import securityIcon from "./icon-security.png";
 
 function HomePage() {
-  const dispatch = useDispatch();
-  let token = localStorage.getItem("token");
-  let navigate = useNavigate();
   let isConnected = useSelector((state) => state.user.connected);
-  let requestStatus = useSelector((state) => state.user.requestStatus);
-  useEffect(() => {
-    if (localStorage.getItem("token") === null || !isConnected) {
-      navigate("/signin");
-    }
-    dispatch(chargeProfile(token));
-  }, [dispatch, isConnected, navigate, token]);
   return (
     <div className="homepage page">
       <NavBar isConnected={isConnected} />

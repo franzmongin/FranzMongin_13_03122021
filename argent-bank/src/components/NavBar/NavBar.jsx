@@ -1,10 +1,11 @@
 import React from "react";
 import argentBankLogo from "./argentBankLogo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../features/user/userSlice";
 
 function NavBar() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   let isConnected = useSelector((state) => state.user.connected);
   const firstName = useSelector((state) => {
@@ -18,6 +19,7 @@ function NavBar() {
     e.preventDefault();
     localStorage.removeItem("token");
     dispatch(logOut());
+    navigate("/", { replace: true });
   };
 
   return (
@@ -42,15 +44,15 @@ function NavBar() {
               <i className="fa fa-user-circle"></i>
               <span className="first-name-navbar">&nbsp;{firstName}</span>
             </Link>
-            <a
-              href=""
+            <Link
+              to="/"
               role="button"
               className="main-nav-item"
               onClick={(e) => handleLogout(e)}
             >
               <i className="fa fa-sign-out"></i>
               <span>&nbsp;Sign Out</span>
-            </a>
+            </Link>
           </>
         )}
       </div>
