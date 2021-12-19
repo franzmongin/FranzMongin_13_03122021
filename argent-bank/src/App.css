@@ -47,6 +47,10 @@ body {
   row-gap: 10px;
   margin-top: 20px;
 }
+.edit-name-form-inputs {
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
 .edit-name-form-inputs,
 .edit-name-form-buttons {
   display: flex;
@@ -97,6 +101,12 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
+  flex-wrap: wrap;
+}
+@media screen and (max-width: 769px) {
+  .main-nav {
+    justify-content: space-around;
+  }
 }
 
 .main-nav a {
