@@ -26,7 +26,7 @@ function UserPage() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token") === null || !isConnected) {
+    if (localStorage.getItem("token") === null && !isConnected) {
       navigate("/signin");
     }
     dispatch(chargeProfile(token));

@@ -1,6 +1,7 @@
 import {
   changeRequestStatus,
   chargeUserInfos,
+  connection,
   disconnection,
 } from "./userSlice";
 
@@ -27,6 +28,7 @@ export function chargeProfile(token) {
       if (formattedResponse.status === 200) {
         dispatch(chargeUserInfos(formattedResponse.body));
         dispatch(changeRequestStatus("end"));
+        dispatch(connection());
       } else {
         dispatch(disconnection());
       }
