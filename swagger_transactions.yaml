@@ -158,9 +158,9 @@ definitions:
           userId: 24
           date: "2021-12-05"
           amount: 50.25
-          description: "coucou"
+          description: "transaction 1 blablabla"
         - id: 2
           userId: 34
           date: "2021-12-10"
           amount: 35.12
-          description: "coucou"
+          description: "transaction 2 blablabla"
