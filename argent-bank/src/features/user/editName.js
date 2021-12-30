@@ -34,7 +34,7 @@ export function editName(token, firstNameInput, lastNameInput) {
         dispatch(chargeUserInfos(formattedResponse.body));
         console.log(formattedResponse);
       } else {
-        // dispatch(disconnection());
+        throw new Error();
       }
     } catch (error) {
       console.log(error);
